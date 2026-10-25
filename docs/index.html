@@ -305,20 +305,23 @@ usage: /fx-desk [pair]
   <section class="section section-stone" id="install" aria-labelledby="install-title">
     <div class="wrap">
       <p class="eyebrow">Install</p>
-      <h2 id="install-title">One line, no Python</h2>
-      <p class="intro">Aloi ships as a compiled program for Windows, macOS on Apple Silicon and Linux x64. It installs for the current user, with no administrator rights.</p>
+      <h2 id="install-title">One download, no Python</h2>
+      <p class="intro">Aloi ships as a compiled program. The Windows build is out; builds for macOS on Apple Silicon and Linux x64 follow. It installs for the current user, with no administrator rights.</p>
       <div class="install">
         <div class="install-cmds">
           <div class="tabs" role="tablist" aria-label="System">
-            <button type="button" class="tab" role="tab" id="os-unix" aria-selected="true" aria-controls="os-unix-panel">macOS and Linux</button>
-            <button type="button" class="tab" role="tab" id="os-win" aria-selected="false" aria-controls="os-win-panel">Windows</button>
+            <button type="button" class="tab" role="tab" id="os-win" aria-selected="true" aria-controls="os-win-panel">Windows</button>
+            <button type="button" class="tab" role="tab" id="os-unix" aria-selected="false" aria-controls="os-unix-panel">macOS and Linux</button>
           </div>
-          <div class="cmd-panel" id="os-unix-panel" role="tabpanel" aria-labelledby="os-unix">
+          <div class="cmd-panel" id="os-unix-panel" role="tabpanel" aria-labelledby="os-unix" hidden>
+            <p class="small">Not released yet: until the macOS and Linux builds are out, this line finds no archive to install.</p>
             <div class="copyline"><code class="install-line" data-template="curl -fsSL https://{host}/install.sh | sh"></code><button type="button" class="copy">Select</button></div>
             <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.sh">install.sh</a> downloads Aloi from the latest release on GitHub and installs it for you alone.</p>
           </div>
-          <div class="cmd-panel" id="os-win-panel" role="tabpanel" aria-labelledby="os-win" hidden>
-            <p class="small">In PowerShell:</p>
+          <div class="cmd-panel" id="os-win-panel" role="tabpanel" aria-labelledby="os-win">
+            <p><a class="btn btn-gold" href="https://github.com/hicham-alaoui0/aloi-beta/releases/latest/download/Aloi-setup.exe">Download Aloi-setup.exe</a></p>
+            <p class="small">38 MB, for 64-bit Windows 10 and 11. It installs for you alone, adds <code>aloi</code> to your terminal and a Start menu entry, and uninstalls from Windows settings like any app. It is not code-signed yet: if SmartScreen stops it, choose <em>More info</em>, then <em>Run anyway</em>.</p>
+            <p class="small">Or in PowerShell:</p>
             <div class="copyline"><code class="install-line" data-template="irm https://{host}/install.ps1 | iex"></code><button type="button" class="copy">Select</button></div>
             <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.ps1">install.ps1</a> downloads Aloi from the latest release on GitHub and installs it for you alone, with no administrator rights.</p>
           </div>
