@@ -314,11 +314,13 @@ usage: /fx-desk [pair]
             <button type="button" class="tab" role="tab" id="os-win" aria-selected="false" aria-controls="os-win-panel">Windows</button>
           </div>
           <div class="cmd-panel" id="os-unix-panel" role="tabpanel" aria-labelledby="os-unix">
-            <div class="copyline"><code class="install-line" data-template="curl -fsSL https://{host}/install.sh | sh"></code><button type="button" class="copy">Copy</button></div>
+            <div class="copyline"><code class="install-line" data-template="curl -fsSL https://{host}/install.sh | sh"></code><button type="button" class="copy">Select</button></div>
+            <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.sh">install.sh</a> downloads Aloi from the latest release on GitHub and installs it for you alone.</p>
           </div>
           <div class="cmd-panel" id="os-win-panel" role="tabpanel" aria-labelledby="os-win" hidden>
             <p class="small">In PowerShell:</p>
-            <div class="copyline"><code class="install-line" data-template="irm https://{host}/install.ps1 | iex"></code><button type="button" class="copy">Copy</button></div>
+            <div class="copyline"><code class="install-line" data-template="irm https://{host}/install.ps1 | iex"></code><button type="button" class="copy">Select</button></div>
+            <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.ps1">install.ps1</a> downloads Aloi from the latest release on GitHub and installs it for you alone, with no administrator rights.</p>
           </div>
           <p class="small">Then open a new terminal and type <code>aloi</code>. The first run asks which model should answer and, on Windows, where market data should come from.</p>
           <table class="ref">

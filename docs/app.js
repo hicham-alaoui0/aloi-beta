@@ -767,21 +767,17 @@
       document.getElementById(t.getAttribute("aria-controls")).hidden = t !== tab;
     });
   }));
+  $$("a[data-href-template]").forEach((a) => { a.href = a.dataset.hrefTemplate.replace("{host}", INSTALL_HOST); });
+  // A page script that puts a command on the clipboard is what ClickFix scams do, and blockers such as
+  // uBlock Origin stop it. So the button only selects the command, and the visitor copies it.
   $$(".copy").forEach((btn) => btn.addEventListener("click", () => {
-    const code = btn.parentElement.querySelector("code");
-    const text = code.textContent;
-    const done = () => { btn.textContent = "Copied"; setTimeout(() => { btn.textContent = "Copy"; }, 1600); };
-    const select = () => {
-      const range = document.createRange();
-      range.selectNodeContents(code);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      btn.textContent = "Selected";
-      setTimeout(() => { btn.textContent = "Copy"; }, 1600);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, select);
-    else select();
+    const range = document.createRange();
+    range.selectNodeContents(btn.parentElement.querySelector("code"));
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? "Now ⌘C" : "Now Ctrl+C";
+    setTimeout(() => { btn.textContent = "Select"; }, 2400);
   }));
 
   const setupHost = $("#setup-term");
