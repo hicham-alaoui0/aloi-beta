@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aloi</title>
+<meta name="description" content="Aloi is a market research agent that runs in your terminal. Bloomberg or free data, charts drawn in the terminal, and every figure in the answer checked against what was fetched.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111514'/%3E%3Crect x='4' y='9' width='24' height='14' rx='3' fill='none' stroke='%23e2b65a' stroke-width='2'/%3E%3Cpath d='M9 19l3-6 3 6M10.2 17h3.6M19 13v6h4' fill='none' stroke='%23e2b65a' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap">
+<link rel="stylesheet" href="term-font.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="wordmark" href="#top" aria-label="Aloi, back to the top">aloi</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#sessions">Sessions</a>
+      <a href="#visuals">Visuals</a>
+      <a href="#chart">/chart</a>
+      <a href="#assay">Checks</a>
+      <a href="#tools">Tools</a>
+      <a href="#skills">Skills</a>
+      <a href="#install">Install</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark">
+      <span class="theme-toggle-dot" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- The hero: a touchstone, with the program on it -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Market research agent · runs in your terminal</p>
+        <h1 id="hero-title" class="hero-title">Aloi</h1>
+        <p class="hero-lead">Ask in plain language. The model calls tools for live data, the numbers are worked out in code, charts are drawn in the terminal, and every figure in the answer is checked against what was fetched.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#install">Install Aloi</a>
+          <a class="btn btn-line" href="#sessions">Watch a session</a>
+        </div>
+        <div class="hallmarks" aria-label="Aloi in four marks">
+          <figure class="hallmark">
+            <span class="punch punch-cut"><span>ALOI</span></span>
+            <figcaption>maker</figcaption>
+          </figure>
+          <figure class="hallmark">
+            <span class="punch punch-oval"><span data-count="definitions">48</span></span>
+            <figcaption>tools</figcaption>
+          </figure>
+          <figure class="hallmark">
+            <span class="punch punch-shield"><span data-count="skills">17</span></span>
+            <figcaption>skills</figcaption>
+          </figure>
+          <figure class="hallmark">
+            <span class="punch punch-square"><span data-count="version">0.3</span></span>
+            <figcaption>date letter</figcaption>
+          </figure>
+        </div>
+        <p class="etymology">In French, <i lang="fr">aloi</i> is the certified fineness of a coin. <i lang="fr">De bon aloi</i> means genuine.</p>
+      </div>
+      <div class="hero-term" id="hero-term"></div>
+    </div>
+    <div class="touchstone" aria-hidden="true">
+      <canvas id="touchstone"></canvas>
+    </div>
+    <p class="wrap touchstone-note">On an assay touchstone, gold is rubbed into a streak and judged against needles of known fineness. These streaks are price paths from this page's data.</p>
+  </section>
+
+  <!-- How a question becomes an answer -->
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 id="how-title">From a question to a checked answer</h2>
+      <p class="intro">One turn of the session at the top of this page, step by step. The model decides what to call and writes the prose; everything else is code.</p>
+      <ol class="pipeline" id="pipeline"></ol>
+    </div>
+  </section>
+
+  <!-- Session player -->
+  <section class="section section-stone" id="sessions" aria-labelledby="sessions-title">
+    <div class="wrap">
+      <p class="eyebrow">Sessions</p>
+      <h2 id="sessions-title">Ten sessions, replayed</h2>
+      <p class="intro">Each replay runs Aloi's own agent loop, tools, figure checks and renderers. <span id="prices-note">Prices are simulated for this page</span> and the model's replies are scripted from the tool results, so every line you see is what the program printed.</p>
+      <div class="player">
+        <div class="session-list" id="session-list" role="tablist" aria-label="Sessions"></div>
+        <div class="player-main">
+          <div id="player-term"></div>
+          <div class="player-controls">
+            <button type="button" class="ctl" id="play-btn">Replay</button>
+            <button type="button" class="ctl" id="skip-btn">Show all</button>
+            <div class="speed" role="group" aria-label="Replay speed">
+              <button type="button" class="ctl ctl-small" data-speed="1" aria-pressed="true">1×</button>
+              <button type="button" class="ctl ctl-small" data-speed="2" aria-pressed="false">2×</button>
+              <button type="button" class="ctl ctl-small" data-speed="4" aria-pressed="false">4×</button>
+            </div>
+            <button type="button" class="ctl ctl-xray" id="xray-btn" aria-expanded="false" aria-controls="xray">What the model saw</button>
+          </div>
+          <p class="session-blurb" id="session-blurb"></p>
+          <div class="xray" id="xray" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section" id="visuals" aria-labelledby="visuals-title">
+    <div class="wrap">
+      <p class="eyebrow">Visuals</p>
+      <h2 id="visuals-title">Charts drawn with characters</h2>
+      <p class="intro">Every visual is drawn from fetched data by code, never by the model. Braille dots plot lines at four times the resolution of the text grid; half blocks draw candles; background colour carries heatmaps and market maps. The model only reads the figures behind them.</p>
+      <div class="filters" id="gallery-filters" role="group" aria-label="Filter visuals"></div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <!-- /chart playground -->
+  <section class="section section-stone" id="chart" aria-labelledby="chart-title">
+    <div class="wrap">
+      <p class="eyebrow">Playground</p>
+      <h2 id="chart-title">/chart, without the model</h2>
+      <p class="intro">The <code>/chart</code> command draws straight from the data source. Type a command or pick the options; tickers are separated by commas because Bloomberg tickers contain spaces.</p>
+      <div class="chart-play">
+        <form class="chart-form" id="chart-form" autocomplete="off">
+          <label class="chart-prompt" for="chart-cmd"><span aria-hidden="true">›</span> /chart</label>
+          <input id="chart-cmd" name="chart-cmd" type="text" spellcheck="false" value="NVDA 6mo candles sma20 volume rsi" aria-describedby="chart-help">
+          <button class="btn btn-gold btn-small" type="submit">Draw</button>
+        </form>
+        <div class="chart-options" id="chart-options"></div>
+        <div id="chart-term"></div>
+        <p class="chart-help" id="chart-help">Periods: 1d 5d 1mo 3mo 6mo ytd 1y 2y 5y 10y. Overlays: sma20 sma50 sma200 ema20 ema50 bollinger. Panels: volume rsi macd. This page carries <span data-count="charts">a few hundred</span> charts drawn ahead of time; Aloi draws any ticker your data source knows.</p>
+        <div class="chart-more">
+          <p class="label">More to draw</p>
+          <div class="chips" id="chart-more"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The assay -->
+  <section class="section" id="assay" aria-labelledby="assay-title">
+    <div class="wrap">
+      <p class="eyebrow">Checks</p>
+      <h2 id="assay-title">Every figure, assayed</h2>
+      <p class="intro">Small models, and sometimes large ones, state numbers they did not fetch. Three checks stand between the model and what you read.</p>
+      <ol class="checks">
+        <li class="check">
+          <h3>Answers</h3>
+          <p>Each currency amount and percentage in an answer is compared with the data the tools returned, at the precision the answer used. Figures that are not there are listed under the answer, including figures the model worked out in its head.</p>
+          <button type="button" class="link-btn" data-session="checks">See it in a session</button>
+        </li>
+        <li class="check">
+          <h3>Charts</h3>
+          <p><code>show_bar_chart</code> is the one tool that draws numbers passed in by the model. It refuses any value that is not in the data fetched so far.</p>
+          <button type="button" class="link-btn" data-session="checks">See a chart refused</button>
+        </li>
+        <li class="check">
+          <h3>Unfetched answers</h3>
+          <p>If the model answers with market figures without calling any tool, or says it drew a chart it did not draw, the reply is held back and the model is sent to do it.</p>
+          <button type="button" class="link-btn" data-session="held">See a reply held back</button>
+        </li>
+      </ol>
+
+      <div class="bench">
+        <div class="bench-head">
+          <h3 class="bench-title">The answer check, on five drafts</h3>
+          <p class="bench-question" id="assay-question"></p>
+        </div>
+        <div class="drafts" id="drafts" role="tablist" aria-label="Drafts of the answer"></div>
+        <div class="bench-grid">
+          <div class="bench-answer">
+            <p class="label">Draft</p>
+            <p class="draft-note" id="draft-note"></p>
+            <p class="draft-text" id="draft-text"></p>
+            <p class="draft-verdict" id="draft-verdict"></p>
+          </div>
+          <div class="bench-sources">
+            <p class="label">What the tools returned</p>
+            <div id="assay-sources"></div>
+          </div>
+        </div>
+        <p class="bench-foot">The check covers amounts with a currency symbol and percentages. It does not judge other numbers, and it cannot tell whether a fetched figure was the right one to quote.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slash commands -->
+  <section class="section section-stone" id="commands" aria-labelledby="commands-title">
+    <div class="wrap">
+      <p class="eyebrow">Commands</p>
+      <h2 id="commands-title">Slash commands</h2>
+      <p class="intro">Some things need no model at all. A watchlist dashboard, the paper portfolio and the tool switches answer straight from your machine.</p>
+      <div class="tabs" id="command-tabs" role="tablist" aria-label="Commands"></div>
+      <div id="command-term"></div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="section" id="tools" aria-labelledby="tools-title">
+    <div class="wrap">
+      <p class="eyebrow">Tools</p>
+      <h2 id="tools-title"><span data-count="definitions">48</span> tools in nine groups</h2>
+      <p class="intro">A model with a large context window gets every group. A small local model gets the core ones, because all the tool descriptions would fill its context; <code>/tools on &lt;group&gt;</code> adds a group. Switch groups below and watch the cost of every request change, worked out the way <code>/tools</code> does it.</p>
+      <div class="tool-bench">
+        <div class="tool-switches">
+          <div class="source-switch" role="group" aria-label="Data source">
+            <button type="button" class="seg" data-source="yahoo" aria-pressed="true">Yahoo Finance</button>
+            <button type="button" class="seg" data-source="bloomberg" aria-pressed="false">Bloomberg Terminal</button>
+          </div>
+          <div class="preset-switch" role="group" aria-label="Tool groups">
+            <button type="button" class="seg" data-preset="all">/tools all</button>
+            <button type="button" class="seg" data-preset="core">/tools core</button>
+          </div>
+          <ul class="group-list" id="group-list"></ul>
+          <p class="tool-meter" id="tool-meter" aria-live="polite"></p>
+        </div>
+        <div class="tool-detail" id="tool-detail"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <p class="eyebrow">Skills</p>
+      <h2 id="skills-title"><span data-count="skills">17</span> playbooks</h2>
+      <p class="intro">A skill tells the model how to carry out a piece of research step by step, and which tools to call. Run one by name, or just ask: a capable model loads the matching skill itself.</p>
+      <div class="skills" id="skill-grid"></div>
+      <div class="own-skill">
+        <div>
+          <h3>Write your own</h3>
+          <p>Put a Markdown file in <code>~/.aloi/skills</code>. A file with the name of a built-in skill replaces it.</p>
+        </div>
+        <pre class="code"><code>---
+name: fx-desk
+description: Morning check of the currency majors
+usage: /fx-desk [pair]
+---
+1. Call show_dashboard with preset "fx" over 1mo.
+2. Call get_news on "currency markets" over 2 days.
+3. Write three lines: the dollar, the biggest mover,
+   and what to watch.</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models, data, cost -->
+  <section class="section section-paper2" id="sources" aria-labelledby="sources-title">
+    <div class="wrap">
+      <p class="eyebrow">Models and data</p>
+      <h2 id="sources-title">Your model, your data</h2>
+      <div class="columns">
+        <div class="column">
+          <h3>Models</h3>
+          <dl class="specs">
+            <div><dt>Claude, through the Anthropic API</dt><dd>With your own key, kept in the system's credential store (Credential Manager, Keychain or the Secret Service), never in a file. Prompts and tool results go to Anthropic.</dd></div>
+            <div><dt>Any chat model in Ollama</dt><dd>Everything runs on your machine. Models without tool support still work: the adapter describes the tools in the prompt and reads <code>&lt;tool_call&gt;</code> blocks from the reply.</dd></div>
+          </dl>
+          <table class="prices">
+            <caption>List prices per million tokens, as of 6 October 2026</caption>
+            <thead><tr><th scope="col">Model</th><th scope="col">In</th><th scope="col">Out</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Claude Haiku 5.5</th><td>$0.10</td><td>$0.50</td></tr>
+              <tr><th scope="row">Claude Sonnet 5.5</th><td>$2.00</td><td>$10.00</td></tr>
+              <tr><th scope="row">Claude Opus 5.5</th><td>$4.00</td><td>$20.00</td></tr>
+              <tr><th scope="row">A model in Ollama</th><td colspan="2">no charge</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="column">
+          <h3>Market data</h3>
+          <dl class="specs">
+            <div><dt>Your Bloomberg Terminal</dt><dd>Through the local Desktop API, on your licence: any reference field with overrides, field history, index members and screening, option chains with the volatility smile, yield curves for ten countries. Windows only, where the Terminal runs.</dd></div>
+            <div><dt>Yahoo Finance</dt><dd>Free, no account, prices may be delayed. The default on macOS and Linux, and the fallback when the Terminal is not reachable.</dd></div>
+          </dl>
+          <h3 class="sub">And free sources for what a terminal does not carry</h3>
+          <ul class="source-tags" id="source-tags"></ul>
+          <p class="small">None needs an API key. When CoinGecko's keyless limit is spent, Aloi waits out short penalties and falls back to CoinPaprika.</p>
+          <h3 class="sub">Paper trading</h3>
+          <dl class="specs">
+            <div><dt>The built-in paper portfolio</dt><dd>$100,000 of pretend money in a file on your machine, filled at the last price.</dd></div>
+            <div><dt>Your Interactive Brokers paper account</dt><dd>Through IB Gateway or TWS on your machine: positions, open orders and fills, stock orders, and option orders at a limit. Paper accounts only, and every order waits for you to type y.</dd></div>
+          </dl>
+          <p class="small"><code>/report</code> measures how either one has actually done: the value at each close rebuilt from the trades, against a benchmark, Treasury bills and doing nothing, with a report page that opens in your browser.</p>
+        </div>
+      </div>
+
+      <div class="usage">
+        <h3>What every answer cost</h3>
+        <p>Every answer ends with what it used. Tap a part of the line.</p>
+        <div class="usage-line" id="usage-line"></div>
+        <p class="usage-explain" id="usage-explain" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section class="section section-stone" id="install" aria-labelledby="install-title">
+    <div class="wrap">
+      <p class="eyebrow">Install</p>
+      <h2 id="install-title">One line, no Python</h2>
+      <p class="intro">Aloi ships as a compiled program for Windows, macOS on Apple Silicon and Linux x64. It installs for the current user, with no administrator rights.</p>
+      <div class="install">
+        <div class="install-cmds">
+          <div class="tabs" role="tablist" aria-label="System">
+            <button type="button" class="tab" role="tab" id="os-unix" aria-selected="true" aria-controls="os-unix-panel">macOS and Linux</button>
+            <button type="button" class="tab" role="tab" id="os-win" aria-selected="false" aria-controls="os-win-panel">Windows</button>
+          </div>
+          <div class="cmd-panel" id="os-unix-panel" role="tabpanel" aria-labelledby="os-unix">
+            <div class="copyline"><code class="install-line" data-template="curl -fsSL https://{host}/install.sh | sh"></code><button type="button" class="copy">Copy</button></div>
+          </div>
+          <div class="cmd-panel" id="os-win-panel" role="tabpanel" aria-labelledby="os-win" hidden>
+            <p class="small">In PowerShell:</p>
+            <div class="copyline"><code class="install-line" data-template="irm https://{host}/install.ps1 | iex"></code><button type="button" class="copy">Copy</button></div>
+          </div>
+          <p class="small">Then open a new terminal and type <code>aloi</code>. The first run asks which model should answer and, on Windows, where market data should come from.</p>
+          <table class="ref">
+            <tbody>
+              <tr><td><code>aloi</code></td><td>chat session</td></tr>
+              <tr><td><code>aloi "compare Nvidia and AMD over 1y"</code></td><td>one question, then exit</td></tr>
+              <tr><td><code>aloi /brief</code></td><td>one skill, then exit</td></tr>
+              <tr><td><code>aloi setup</code></td><td>change the model, the key or the data source</td></tr>
+              <tr><td><code>aloi doctor</code></td><td>check that the model and the data source answer</td></tr>
+              <tr><td><code>aloi --data yahoo --model claude-sonnet-5-5</code></td><td>override the saved choices for one session</td></tr>
+              <tr><td><code>aloi --broker ibkr</code></td><td>trade your IBKR paper account instead of the built-in one</td></tr>
+            </tbody>
+          </table>
+          <p class="small">Settings live in <code>~/.aloi/config.toml</code>; <code>ALOI_MODEL</code>, <code>ALOI_DATA</code>, <code>ALOI_TOOLS</code>, <code>ALOI_NUM_CTX</code> and <code>ALOI_THINK=1</code> override them for one terminal. The paper portfolio, the watchlist, saved sessions and report pages live in <code>~/.aloi</code> too, and survive updates.</p>
+        </div>
+        <div id="setup-term"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inside -->
+  <section class="section" id="inside" aria-labelledby="inside-title">
+    <div class="wrap">
+      <p class="eyebrow">Inside</p>
+      <h2 id="inside-title">Inside the program</h2>
+      <div class="inside">
+        <div>
+          <dl class="modules">
+            <div><dt>agent.py</dt><dd>the model and tool loop, corrections and the figure checks</dd></div>
+            <div><dt>grounding.py</dt><dd>matching figures in text against fetched data</dd></div>
+            <div><dt>models/</dt><dd>adapters for Ollama and Anthropic behind one protocol</dd></div>
+            <div><dt>providers/</dt><dd>Bloomberg and Yahoo behind the DataProvider protocol</dd></div>
+            <div><dt>sources/</dt><dd>the free sources, one module each, with caching and rate-limit handling</dd></div>
+            <div><dt>tools/</dt><dd>what the model can call: each tool is a schema plus a function</dd></div>
+            <div><dt>skills/</dt><dd>the playbooks, as Markdown</dd></div>
+            <div><dt>charts/</dt><dd>line, candle, panel, bar, heatmap, tile and trend-table renderers</dd></div>
+            <div><dt>analytics.py</dt><dd>indicators, risk statistics and other price maths</dd></div>
+            <div><dt>performance.py</dt><dd>the track record, rebuilt from the trades and each day's closes</dd></div>
+            <div><dt>ibkr.py</dt><dd>the IBKR paper account, through IB Gateway, and its journal</dd></div>
+            <div><dt>evals/</dt><dd>a 28-question tool-calling eval to compare models</dd></div>
+          </dl>
+        </div>
+        <div class="inside-right">
+          <div id="code-term"></div>
+          <ul class="facts">
+            <li><strong>Compiled.</strong> Aloi's own code, playbooks included, is compiled to machine code with Nuitka. The build fails if any of its Python source ends up in the bundle.</li>
+            <li><strong>Tested offline.</strong> Data sources are tested on saved samples of their payloads, so the suite runs without a network.</li>
+            <li><strong>Measured.</strong> <code>evals/tool_calling.py</code> scores how reliably a model drives the tools: a case passes when the model called a fitting tool, every call was valid, and the answer had no figure missing from the fetched data.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="wordmark wordmark-foot">aloi</p>
+      <p class="small">Aloi gives analysis, not investment advice. It is beta software. It is not affiliated with Bloomberg, Anthropic, Yahoo or any other data or model provider; their names are their trademarks.</p>
+    </div>
+    <div>
+      <p class="small" id="about-demo">Every terminal frame on this page was printed by Aloi's own code, from simulated prices and scripted model replies.</p>
+      <p class="small">The built-in paper portfolio is a simulation: none of its orders leaves your machine. Orders for an IBKR paper account go to IBKR's own simulation, never to a live account, and each waits for you to type y. The free sources are unofficial or rate-limited and can be delayed. Prediction-market prices are what traders pay, not forecasts.</p>
+    </div>
+  </div>
+</footer>
+
+<dialog class="viewer" id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-head">
+    <p class="viewer-title" id="viewer-title"></p>
+    <button type="button" class="ctl" id="viewer-close">Close</button>
+  </div>
+  <div id="viewer-term"></div>
+  <p class="viewer-caption" id="viewer-caption"></p>
+</dialog>
+
+<script src="demos.js"></script>
+<script src="charts.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>

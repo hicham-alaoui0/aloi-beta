@@ -1,0 +1,35 @@
+ALOI BETA LICENCE
+
+Copyright (c) 2026 the author of Aloi. All rights reserved.
+
+This is a draft written for the beta. Have it reviewed by a lawyer before a paid release.
+
+1. What you may do. You may install Aloi and use it, free of charge, during the beta, for your
+   own research.
+
+2. What you may not do. You may not copy Aloi to others, sell it, rent it, or offer it as a
+   service; you may not modify, decompile, disassemble or reverse engineer it, except where the
+   law gives you that right regardless of this licence.
+
+3. Beta. This is pre-release software. It may change, stop working or be withdrawn at any time,
+   and a later version may be offered for a fee.
+
+4. Not investment advice. Aloi produces analysis from data supplied by third parties. It may be
+   wrong, late or incomplete. Nothing it shows is a recommendation to buy or sell anything. You
+   are responsible for the decisions you take.
+
+5. Your data and your licences. Aloi runs on your machine. Questions you ask and the data fetched
+   to answer them are sent to the model provider you choose; with a local model they stay on your
+   machine. You are responsible for holding the licences and permissions the data sources you
+   connect require, including your own Bloomberg agreement, and for your organisation's rules on
+   sending such data to a third party.
+
+6. Third parties. Aloi is not affiliated with, endorsed by or sponsored by Bloomberg Finance L.P.,
+   Anthropic PBC, Yahoo, or any other data or model provider. Their names are their trademarks.
+   The software Aloi includes is listed, with its licences, in licenses/THIRD-PARTY-NOTICES.txt.
+
+7. No warranty. Aloi is provided "as is", without warranty of any kind, express or implied,
+   including fitness for a particular purpose and accuracy of results.
+
+8. Liability. To the extent the law allows, the author is not liable for any loss or damage
+   arising from the use of Aloi, including trading losses.
