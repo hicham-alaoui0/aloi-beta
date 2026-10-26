@@ -36,6 +36,10 @@ macOS and Linux builds follow. The program is not code-signed yet, so Windows ma
 - **Market data:** your Bloomberg Terminal through its local Desktop API, or Yahoo Finance for free.
 - **Free sources** for what a terminal does not carry: crypto, economic series, filings, news,
   prediction markets.
+- **Expert mode:** put `/deep` before a question. Your model gathers the data, Claude Opus reads it
+  once and decides, and an investment committee reviews the answer before you see it.
+- **Expert tools:** hedge design sized to beta, factor exposures, the market's regime, what history says
+  after a setup, and valuation against history and peers with the growth the price implies.
 - **Paper trading:** a built-in paper portfolio, or your Interactive Brokers paper account through
   IB Gateway. Every order waits for you to type y.
 

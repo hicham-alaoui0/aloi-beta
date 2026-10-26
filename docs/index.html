@@ -273,6 +273,8 @@ usage: /fx-desk [pair]
               <tr><th scope="row">A model in Ollama</th><td colspan="2">no charge</td></tr>
             </tbody>
           </table>
+          <h3 class="sub">Expert mode</h3>
+          <p class="small">Put <code>/deep</code> before a question for the answer an experienced portfolio manager would give. Your model gathers the data with the tools; Claude Opus reads all of it once and decides; an investment committee reads the draft before you do, checking suitability, concentration, hindsight, what is priced in, sizing and hedge design, with a bull and a bear for trade ideas. Without it, the model you chose answers with the same tools and playbooks, for about a cent.</p>
         </div>
         <div class="column">
           <h3>Market data</h3>
@@ -363,7 +365,8 @@ usage: /fx-desk [pair]
             <div><dt>analytics.py</dt><dd>indicators, risk statistics and other price maths</dd></div>
             <div><dt>performance.py</dt><dd>the track record, rebuilt from the trades and each day's closes</dd></div>
             <div><dt>ibkr.py</dt><dd>the IBKR paper account, through IB Gateway, and its journal</dd></div>
-            <div><dt>evals/</dt><dd>a 28-question tool-calling eval to compare models</dd></div>
+            <div><dt>committee.py</dt><dd>the investment committee that reads a deep answer before you do</dd></div>
+            <div><dt>evals/</dt><dd>two evals: how reliably a model drives the tools, and how expert its answers are, graded against a practitioner's rubric</dd></div>
           </dl>
         </div>
         <div class="inside-right">
