@@ -3,10 +3,6 @@
 (() => {
   "use strict";
 
-  // Where the release archives and install scripts are hosted: the same value as in
-  // packaging/install.sh and packaging/install.ps1.
-  const INSTALL_HOST = "hicham-alaoui0.github.io/aloi-beta";
-
   const A = window.ALOI;
   if (!A) return;
   const CHARTS = window.ALOI_CHARTS || {};
@@ -756,30 +752,7 @@
     $("#usage-explain").textContent = "From the session at the top of this page, priced as Claude Sonnet 5.5.";
   }
 
-  /* ---------------- install ---------------- */
-  $$(".install-line").forEach((node) => {
-    const [before, after] = node.dataset.template.split("{host}");
-    node.replaceChildren(document.createTextNode(before), el("span", { class: "host", text: INSTALL_HOST }), document.createTextNode(after));
-  });
-  $$(".install .tab").forEach((tab) => tab.addEventListener("click", () => {
-    $$(".install .tab").forEach((t) => {
-      t.setAttribute("aria-selected", String(t === tab));
-      document.getElementById(t.getAttribute("aria-controls")).hidden = t !== tab;
-    });
-  }));
-  $$("a[data-href-template]").forEach((a) => { a.href = a.dataset.hrefTemplate.replace("{host}", INSTALL_HOST); });
-  // A page script that puts a command on the clipboard is what ClickFix scams do, and blockers such as
-  // uBlock Origin stop it. So the button only selects the command, and the visitor copies it.
-  $$(".copy").forEach((btn) => btn.addEventListener("click", () => {
-    const range = document.createRange();
-    range.selectNodeContents(btn.parentElement.querySelector("code"));
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    btn.textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? "Now ⌘C" : "Now Ctrl+C";
-    setTimeout(() => { btn.textContent = "Select"; }, 2400);
-  }));
-
+  /* ---------------- availability ---------------- */
   const setupHost = $("#setup-term");
   if (setupHost) {
     const view = makeTerm({ title: "~", tag: null, cls: "term-tall" });

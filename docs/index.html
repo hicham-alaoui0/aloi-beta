@@ -3,8 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aloi</title>
-<meta name="description" content="Aloi is a market research agent that runs in your terminal. Bloomberg or free data, charts drawn in the terminal, and every figure in the answer checked against what was fetched.">
+<title>Aloi: AI market research in your terminal, Bloomberg or free data</title>
+<meta name="description" content="Aloi is an AI market research agent for your terminal: Bloomberg or free data, charts drawn in text, and every figure checked against what was fetched.">
+<link rel="canonical" href="https://hicham-alaoui0.github.io/aloi-beta/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aloi">
+<meta property="og:title" content="Aloi: AI market research in your terminal">
+<meta property="og:description" content="Ask in plain language. The model calls tools for live data, the numbers are worked out in code, and every figure in the answer is checked against what was fetched.">
+<meta property="og:url" content="https://hicham-alaoui0.github.io/aloi-beta/">
+<meta property="og:image" content="https://hicham-alaoui0.github.io/aloi-beta/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aloi: a terminal session answering a market question">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Aloi", "url": "https://hicham-alaoui0.github.io/aloi-beta/", "description": "A market research agent that runs in the terminal: the model calls tools for live data from a Bloomberg Terminal or free sources, the numbers are worked out in code, and every figure in the answer is checked against what was fetched.", "applicationCategory": "FinanceApplication", "operatingSystem": "Windows", "softwareVersion": "0.5.0"}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111514'/%3E%3Crect x='4' y='9' width='24' height='14' rx='3' fill='none' stroke='%23e2b65a' stroke-width='2'/%3E%3Cpath d='M9 19l3-6 3 6M10.2 17h3.6M19 13v6h4' fill='none' stroke='%23e2b65a' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +38,7 @@
       <a href="#assay">Checks</a>
       <a href="#tools">Tools</a>
       <a href="#skills">Skills</a>
-      <a href="#install">Install</a>
+      <a href="#availability">Availability</a>
     </nav>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark">
       <span class="theme-toggle-dot" aria-hidden="true"></span>
@@ -42,8 +56,8 @@
         <h1 id="hero-title" class="hero-title">Aloi</h1>
         <p class="hero-lead">Ask in plain language. The model calls tools for live data, the numbers are worked out in code, charts are drawn in the terminal, and every figure in the answer is checked against what was fetched.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#install">Install Aloi</a>
-          <a class="btn btn-line" href="#sessions">Watch a session</a>
+          <a class="btn btn-gold" href="#sessions">Watch a session</a>
+          <a class="btn btn-line" href="#tools">See the tools</a>
         </div>
         <div class="hallmarks" aria-label="Aloi in four marks">
           <figure class="hallmark">
@@ -51,15 +65,15 @@
             <figcaption>maker</figcaption>
           </figure>
           <figure class="hallmark">
-            <span class="punch punch-oval"><span data-count="definitions">48</span></span>
+            <span class="punch punch-oval"><span data-count="definitions">72</span></span>
             <figcaption>tools</figcaption>
           </figure>
           <figure class="hallmark">
-            <span class="punch punch-shield"><span data-count="skills">17</span></span>
+            <span class="punch punch-shield"><span data-count="skills">24</span></span>
             <figcaption>skills</figcaption>
           </figure>
           <figure class="hallmark">
-            <span class="punch punch-square"><span data-count="version">0.3</span></span>
+            <span class="punch punch-square"><span data-count="version">0.5</span></span>
             <figcaption>date letter</figcaption>
           </figure>
         </div>
@@ -135,7 +149,7 @@
         </form>
         <div class="chart-options" id="chart-options"></div>
         <div id="chart-term"></div>
-        <p class="chart-help" id="chart-help">Periods: 1d 5d 1mo 3mo 6mo ytd 1y 2y 5y 10y. Overlays: sma20 sma50 sma200 ema20 ema50 bollinger. Panels: volume rsi macd. This page carries <span data-count="charts">a few hundred</span> charts drawn ahead of time; Aloi draws any ticker your data source knows.</p>
+        <p class="chart-help" id="chart-help">Periods: 1d 5d 1mo 3mo 6mo ytd 1y 2y 5y 10y. Overlays: sma20 sma50 sma200 ema20 ema50 bollinger. Panels: volume rsi macd. This page carries <span data-count="charts">283</span> charts drawn ahead of time; Aloi draws any ticker your data source knows.</p>
         <div class="chart-more">
           <p class="label">More to draw</p>
           <div class="chips" id="chart-more"></div>
@@ -206,7 +220,7 @@
   <section class="section" id="tools" aria-labelledby="tools-title">
     <div class="wrap">
       <p class="eyebrow">Tools</p>
-      <h2 id="tools-title"><span data-count="definitions">48</span> tools in nine groups</h2>
+      <h2 id="tools-title"><span data-count="definitions">72</span> tools in nine groups</h2>
       <p class="intro">A model with a large context window gets every group. A small local model gets the core ones, because all the tool descriptions would fill its context; <code>/tools on &lt;group&gt;</code> adds a group. Switch groups below and watch the cost of every request change, worked out the way <code>/tools</code> does it.</p>
       <div class="tool-bench">
         <div class="tool-switches">
@@ -230,7 +244,7 @@
   <section class="section" id="skills" aria-labelledby="skills-title">
     <div class="wrap">
       <p class="eyebrow">Skills</p>
-      <h2 id="skills-title"><span data-count="skills">17</span> playbooks</h2>
+      <h2 id="skills-title"><span data-count="skills">24</span> playbooks</h2>
       <p class="intro">A skill tells the model how to carry out a piece of research step by step, and which tools to call. Run one by name, or just ask: a capable model loads the matching skill itself.</p>
       <div class="skills" id="skill-grid"></div>
       <div class="own-skill">
@@ -303,31 +317,15 @@ usage: /fx-desk [pair]
     </div>
   </section>
 
-  <!-- Install -->
-  <section class="section section-stone" id="install" aria-labelledby="install-title">
+  <!-- Availability -->
+  <section class="section section-stone" id="availability" aria-labelledby="availability-title">
     <div class="wrap">
-      <p class="eyebrow">Install</p>
-      <h2 id="install-title">One download, no Python</h2>
-      <p class="intro">Aloi ships as a compiled program. The Windows build is out; builds for macOS on Apple Silicon and Linux x64 follow. It installs for the current user, with no administrator rights.</p>
+      <p class="eyebrow">Availability</p>
+      <h2 id="availability-title">Not available yet</h2>
+      <p class="intro">Aloi is in private testing, and there is no download yet. This page shows what it does: every terminal on it was printed by Aloi's own code.</p>
       <div class="install">
         <div class="install-cmds">
-          <div class="tabs" role="tablist" aria-label="System">
-            <button type="button" class="tab" role="tab" id="os-win" aria-selected="true" aria-controls="os-win-panel">Windows</button>
-            <button type="button" class="tab" role="tab" id="os-unix" aria-selected="false" aria-controls="os-unix-panel">macOS and Linux</button>
-          </div>
-          <div class="cmd-panel" id="os-unix-panel" role="tabpanel" aria-labelledby="os-unix" hidden>
-            <p class="small">Not released yet: until the macOS and Linux builds are out, this line finds no archive to install.</p>
-            <div class="copyline"><code class="install-line" data-template="curl -fsSL https://{host}/install.sh | sh"></code><button type="button" class="copy">Select</button></div>
-            <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.sh">install.sh</a> downloads Aloi from the latest release on GitHub and installs it for you alone.</p>
-          </div>
-          <div class="cmd-panel" id="os-win-panel" role="tabpanel" aria-labelledby="os-win">
-            <p><a class="btn btn-gold" href="https://github.com/hicham-alaoui0/aloi-beta/releases/latest/download/Aloi-setup.exe">Download Aloi-setup.exe</a></p>
-            <p class="small">33 MB, for 64-bit Windows 10 and 11. It installs for you alone, adds <code>aloi</code> to your terminal and a Start menu entry, and uninstalls from Windows settings like any app. It is not code-signed yet: if SmartScreen stops it, choose <em>More info</em>, then <em>Run anyway</em>.</p>
-            <p class="small">Or in PowerShell:</p>
-            <div class="copyline"><code class="install-line" data-template="irm https://{host}/install.ps1 | iex"></code><button type="button" class="copy">Select</button></div>
-            <p class="small">Read it first if you like: <a class="script-link" data-href-template="https://{host}/install.ps1">install.ps1</a> downloads Aloi from the latest release on GitHub and installs it for you alone, with no administrator rights.</p>
-          </div>
-          <p class="small">Then open a new terminal and type <code>aloi</code>. The first run asks which model should answer and, on Windows, where market data should come from.</p>
+          <p class="small">In a terminal it runs as <code>aloi</code>. The first run asks which model should answer and, on Windows, where market data should come from.</p>
           <table class="ref">
             <tbody>
               <tr><td><code>aloi</code></td><td>chat session</td></tr>
@@ -386,7 +384,7 @@ usage: /fx-desk [pair]
   <div class="wrap footer-grid">
     <div>
       <p class="wordmark wordmark-foot">aloi</p>
-      <p class="small">Aloi gives analysis, not investment advice. It is beta software. It is not affiliated with Bloomberg, Anthropic, Yahoo or any other data or model provider; their names are their trademarks.</p>
+      <p class="small">Aloi gives analysis, not investment advice. It is in private testing and not available for download. It is not affiliated with Bloomberg, Anthropic, Yahoo, Interactive Brokers or any other data, model or broker provider; their names are their trademarks.</p>
     </div>
     <div>
       <p class="small" id="about-demo">Every terminal frame on this page was printed by Aloi's own code, from simulated prices and scripted model replies.</p>
@@ -404,7 +402,7 @@ usage: /fx-desk [pair]
   <p class="viewer-caption" id="viewer-caption"></p>
 </dialog>
 
-<script src="demos.js"></script>
+<script src="demos.js" defer></script>
 <script src="charts.js" defer></script>
 <script src="app.js" defer></script>
 </body>

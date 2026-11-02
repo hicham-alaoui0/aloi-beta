@@ -6,29 +6,8 @@ figure in the answer is checked against what was fetched.
 
 **Website:** https://hicham-alaoui0.github.io/aloi-beta/
 
-This repository holds the website, the install scripts and the releases. Aloi itself ships as a
-compiled program.
-
-## Install
-
-Windows, in PowerShell:
-
-```powershell
-irm https://hicham-alaoui0.github.io/aloi-beta/install.ps1 | iex
-```
-
-macOS and Linux:
-
-```bash
-curl -fsSL https://hicham-alaoui0.github.io/aloi-beta/install.sh | sh
-```
-
-It installs for the current user, with no administrator rights and no Python. Then open a new
-terminal and type `aloi`. The first run asks which model should answer and, on Windows, where
-market data should come from.
-
-The Windows build is in the [latest release](https://github.com/hicham-alaoui0/aloi-beta/releases/latest).
-macOS and Linux builds follow. The program is not code-signed yet, so Windows may warn about it.
+This repository holds the website. Aloi is in private testing and not available for download yet:
+the website shows what it does.
 
 ## What it runs on
 
@@ -45,8 +24,7 @@ macOS and Linux builds follow. The program is not code-signed yet, so Windows ma
 
 ## Notes
 
-Aloi gives analysis, not investment advice. It is beta software, free during the beta under the
-[beta licence](LICENSE.txt). It is not affiliated with Bloomberg, Anthropic, Yahoo, Interactive
+Aloi gives analysis, not investment advice. It is not affiliated with Bloomberg, Anthropic, Yahoo, Interactive
 Brokers or any other provider; their names are their trademarks.
 
 Problems and ideas: [open an issue](https://github.com/hicham-alaoui0/aloi-beta/issues).
